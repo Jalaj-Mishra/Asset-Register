@@ -1,0 +1,44 @@
+.form-container{
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.form-header-txt{
+    text-shadow: 2px 2px #ccc;
+    font-family: "OpenSans";
+    font-size: 19px;
+    letter-spacing: 1.5px;
+    font-weight: 500;
+}
+.form-body{
+    padding-bottom: 20px;
+    line-height: 2.8;
+    align-items: center;
+}
+.form-setting{
+    margin-top: 20px;
+    align-self: center;
+    font-family: "OpenSans";
+    font-size: 16px;
+    letter-spacing: 1.3px;
+    font-weight: 500;
+}
+.form-usertext{
+    align-items: center;
+    outline:#1b6d85;
+    font-size: 13px;
+    border: 0.5px solid #0db7c4;
+    color: #474444;
+    font-family: 'Open Sans';
+    letter-spacing: 2.3px;
+    padding: 5px 5px;
+    background: #fff;
+    justify-content: space-between;
+    width: 44%;
+    height: 30px;
+    box-sizing: border-box;
+    box-shadow: 0px 2px 7px 2px rgb(0 0 0 / 8%);
+    border-radius: 5px;
+    margin-left: 40px;
+}

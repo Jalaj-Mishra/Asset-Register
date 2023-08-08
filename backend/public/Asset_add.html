@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="Asset_add.css">
+    <link rel="stylesheet" href="index.css">
+    <title>OCF|Shahjahanpur|Asset Register|Addition User</title>
+    <script type="text/javascript">
+
+        // generate id number for current asset.
+        function generateSequenceNumber(){
+            var idNumber = Math.floor(1000 + Math.random() * 9000);
+            alert("Asset id for this Asset will be : "+ idNumber)
+        }
+    </script>
+</head>
+<body>
+    <div class="header-container">
+        <div class="header-sub-container">
+            <div class="header-ocf-logo">
+                <a href="https://ddpdoo.gov.in/units/OCFS" title="HOME"><img src="logo_ocf.jpg" style="height: 100px !important;" alt="Logo"></a>
+            </div>
+            <div class="text">
+                <h3>आयुध वस्त्र निर्माणी शाहजहाँपुर<br>Ordnance Clothing Factory Shahjahanpur</h3>
+            </div>
+        </div>
+        <div class="header-sub-container-2"> 
+            <div class="header-indian-logo">
+                <img src="https://ddpdoo.gov.in/assets/front/theme1/img/banner2_a.png" alt="India Logo" title="India_Logo">
+            </div>
+            <div class="header-make-in-india-logo">
+                <a href="https://ddpdoo.gov.in/pages/make-in-india1"><img src="sectors-defence-icon.jpg" alt="sectors-defence-logo" title="Make in India_Logo" style="height: 66px;"></a>
+            </div>
+        </div>
+    </div>
+    <marquee> 
+        <b>
+            <font size="4" color="red">	
+                Contribute your rendering of the National Anthem of India at :
+                <a href="https://rashtragaan.in" target="_blank">https://rashtragaan.in</a>
+                . For details kindly follow the <a href="https://www.youtube.com/watch?v=B9Z5ofNG1Bc" target="_blank">link here</a>
+            </font>
+        </b> 	
+    </marquee>
+    <hr>
+    <div class="form-container">
+        <div class="form-header-txt">
+            <h2><center>ASSET ADDITION</center></h2>
+        </div>
+        <div class="form-body">
+            <center>
+            <form class="form-setting" action="/asset-addition" method="post">
+                <label class="form-field-txt">Asset Category</label>  &nbsp
+                    <select name="category" class="form-usertext">
+                        <option>select Category</option>
+                        <option>BUILDING</option>
+                        <option>FURNITURE & FIXTURES</option>
+                        <option>COMPUTERS</option>
+                        <option>LAND</option>
+                        <option>OFFICE EQUIPMENTS</option>
+                        <option>PLANTS & MACHINES</option>  
+                        <option>VEHICLES</option>                              
+                    </select><br>
+                <label class="form-field-txt">Asset Id</label>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <input onclick="generateSequenceNumber()" name="id" type="text" class="form-usertext" required><br>
+                <label class="form-field-txt">Asset Name</label>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input name="assName"type="text" class="form-usertext" required><br>
+                <label class="form-field-txt">Purchase Date</label>&nbsp&nbsp&nbsp&nbsp&nbsp<input name="pDate" type="date" class="form-usertext" required><br>
+                <label class="form-field-txt">Asset Quantity </label>&nbsp&nbsp&nbsp<input name="assetQty" type="number" class="form-usertext" placeholder="No. of pieces" required><br>
+                <label class="form-field-txt">Asset Cost Price</label>&nbsp<input name="assetCp" type="text" class="form-usertext" required><br>
+                <label class="form-field-txt">Asset Useful Life</label><input name="assetUL" type="number" placeholder="(In years)" class="form-usertext" required><br>
+                <label class="form-field-txt">Purchase Reason</label>&nbsp&nbsp<input name="pReason" type="text" placeholder="Enter Suitable Reason" class="form-usertext" required></textarea><br>
+                <input type="checkbox" required> <label class="form-field-txt">I have checked the all the information entered in the above fields.</label><br><br>
+                <input type="submit" value="Add Asset" class="button">
+                <input type="reset" value="Reset Details" class="button">
+            </form>
+            </center>
+        </div>
+    </div>
+</body>
+</html>

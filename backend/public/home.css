@@ -1,0 +1,53 @@
+.nav{
+    background-color: rgb(3, 37, 110);
+    height: 40px;
+    display: flex;
+    flex-direction: row;
+    
+}
+.nav-home{
+    color: white;
+    font-family: "Open Sans";
+    font-size: 20px;
+    margin-left: 30px;
+}
+.body-container-header{
+    text-shadow: 2px 2px #ccc;
+    font-family: "OpenSans";
+    font-size: 25px;
+    letter-spacing: 1.5px;
+    font-weight: 500;
+}
+.body-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 45%;
+} 
+.user-head-txt{
+    text-shadow: 2px 2px #ccc;
+    font-weight: 600;
+    letter-spacing: 2.3px;
+    font-family: "OpenSans";
+    font-size: 20px;
+    padding-top: 5px;
+}
+.user_add{
+    border-style: solid;
+    border-color: rgb(0, 0, 0);
+    background-color:rgb(78, 177, 103) ;
+    margin-top: 22px;
+    margin-left: 30px;
+    margin-bottom: 281px;
+}
+.user_del{
+    border-style: solid;
+    border-color: rgb(0, 0, 0);
+    background-color: rgb(235, 44, 44);
+    margin-top: 22px;
+    margin-left: 32px;
+    margin-bottom: 281px;
+    margin-right: 32px;
+}
+
+  
