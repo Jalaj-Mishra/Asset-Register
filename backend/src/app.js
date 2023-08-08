@@ -119,35 +119,20 @@ app.post("/asset-deletion", async(req,res)=>{
     }
 })
 
-
-//to get id
-app.get("/asset-deletion", async(req, res)=>{
+// Fetching Asset Register
+app.post("/fetchassets", async(req, res)=>{
     try{
-        console.log(req.params.id)
-        res.status(201).send("get rev")
-    }catch(e){
-        res.status(400).send(e)
+        const assetData = await assetRegister.find({})
+        res.status(200).json({assetData})
+    }catch(error){
+        req.send("invalid request")
     }
-    })
+})   
 
 
 
 
 
-
-// app.patch("/asset-deletion", async(req,res)=>{
-//     try{
-//         const qdb = 
-        
-        
-        
-        
-        
-        
-        
-        
-        
-// )
 
 
 // Port Listening 

@@ -35,28 +35,21 @@
             </font>
         </b> 	
     </marquee>
-    <div class="nav">
-        <a href="https://ddpdoo.gov.in/units/OCFS" title="OCFS HOME"><font class="nav-home">Home</font></a>
-        <a href="https://goo.gl/maps/qTCfPaCSLgmYbw676" title="OCFS location"><font class="nav-home">Google Map</font></a>
-        <a href="ADR.html" title="Report"><font class="nav-home">Asset Report</font></a>
-        <a href="Viewassets.html" title="Report"><font class="nav-home">View Assets</font></a>
-        
-    </div>
-    <br><br>
-    <center>
-        <h2 class="body-container-header"><b>User Selection</b></h2>
-    </center>   
-    <center>
-        <div class="body-container">
-            <div class="user_add">
-                <center><font class="user-head-txt">ADDITION</font></center>
-                &nbsp&nbsp&nbsp<a href="Asset_add.html"><img src="user-icon.png"></a>
-            </div>
-            <div class="user_del">
-                <center><font class="user-head-txt">DELETION</font></center>
-                &nbsp&nbsp&nbsp<a href="Asset_del.html"><img src="user-icon.png"></a>
-            </div>
+    <hr>
+    <br><br><br>
+    <div class="form-container">
+        <div class="form-header-txt">
+            <h2><center>ASSET REGISTER</center></h2>
+            <p><center>To view Asset Register and check all the listed entries of Assets in the Asset Register click fetch Assets  button below.</center></p>
         </div>
-    </center>
+        <br>
+        <div class="form-body">
+            <center>
+            <form class="form-setting" action="/fetchassets" method="post">
+                <input type="submit" value="Fetch Assets" class="button">
+            </form>
+            </center>
+        </div>
+    </div>
 </body>
 </html>
