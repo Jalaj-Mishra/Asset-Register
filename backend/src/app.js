@@ -111,10 +111,12 @@ app.post("/asset-deletion", async(req,res)=>{
             assetQuantity: req.body.Qty,
             remarkDel: req.body.remarks
         })
+        
         // console.log(delAsset)
         const dAsset = await delAsset.save()
 
-         const predata= await assetRegister.find({assetId:8727});
+        //Update Asset quantity
+        const predata= await assetRegister.find({assetId:req.body.id});
         const update= await assetRegister.updateOne({assetId:req.body.id},{$set:{aQty:predata[0].aQty-req.body.Qty }});
         
         res.status(201).send("Asset has Deleted")
