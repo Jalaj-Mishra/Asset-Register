@@ -124,7 +124,7 @@ app.post("/asset-deletion", async(req,res)=>{
 })
 
 // Fetching Asset Register
-app.post("/fetchassets", async(req, res)=>{
+app.get("/fetchassets", async(req, res)=>{
     try{
         const assetData = await assetRegister.find({})
         res.status(200).json({assetData})
@@ -134,6 +134,7 @@ app.post("/fetchassets", async(req, res)=>{
 })   
 
 
+ 
 
 
 
