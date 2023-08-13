@@ -66,9 +66,6 @@ app.post("/login",async(req,res) => {
         }else{
             alert("Credentials are not matching")
         }
-        
-        
-
 
     }catch(error){
         res.status(400).send("Invalid credentials");
@@ -134,11 +131,6 @@ app.get("/fetchassets", async(req, res)=>{
         req.send("invalid request")
     }
 })   
-
-
- 
-
-
 
 
 
