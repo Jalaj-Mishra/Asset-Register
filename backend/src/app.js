@@ -4,6 +4,7 @@ const path = require('path')
 const Register = require("./models/registration")
 const assetRegister = require("./models/Asset_add")
 const assetDel = require("./models/Asset_del")
+const cors = require(cors)
 const app = express()
 const {json} = require('express')
 const { set } = require('mongoose')
@@ -12,7 +13,7 @@ const port = process.env.PORT || 3000
 app.use(express.static("../public"))
 app.use(express.json())
 app.use(express.urlencoded({extended:false}))
-
+app.use(cors())
 
 
 // Login Screen
