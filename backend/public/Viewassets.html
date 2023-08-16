@@ -49,14 +49,13 @@
                 <center>ASSET REGISTER</center>
             </h2>
             <p>
-                <center>To view Asset Register and check all the listed entries of Assets in the Asset Register click
-                    fetch Assets button below.</center>
+                <center>Click <b>fetch Assets</b> below to download Excel file to check all the listed entries of Assets in the Asset Register.</center>
             </p>
         </div>
         <br>
         <div class="form-body">
             <center>
-                <script>
+                <!-- <script>
                     function datadisp(data) {
 
                         let p = `<p>  Stored Data  </p>`
@@ -91,10 +90,10 @@
                 </script>
                 <div id="tt"></div>
 
-                <button onclick="FileR()" class="button">Fetch Assets</button>
-                <!-- <form class="form-setting" action="/fetchassets" method="post">
-                <input type="submit" value="Fetch Assets" class="button">
-            </form> -->
+                <button onclick="FileR()" class="button">Fetch Assets</button> -->
+                <form class="form-setting" action="/fetchassets" method="get">
+                    <input type="submit" value="Fetch Assets" class="button">
+                </form>
             </center>
         </div>
     </div>

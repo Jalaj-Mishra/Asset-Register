@@ -4,6 +4,7 @@ const path = require('path')
 const Register = require("./models/registration")
 const assetRegister = require("./models/Asset_add")
 const assetDel = require("./models/Asset_del")
+const createCsvWriter = require('csv-writer').createObjectCsvWriter;
 const app = express()
 const {json} = require('express')
 const { set } = require('mongoose')
@@ -122,15 +123,50 @@ app.post("/asset-deletion", async(req,res)=>{
     }
 })
 
-// Fetching Asset Register
-app.get("/fetchassets", async(req, res)=>{
-    try{
-        const assetData = await assetRegister.find({})
-        res.status(200).json({assetData})
-    }catch(error){
-        req.send("invalid request")
-    }
-})   
+// // Fetching Asset Register
+// app.get("/fetchassets", async(req, res)=>{
+//     try{
+//         const assetData = await assetRegister.find({})
+//         res.status(200).json({assetData})
+//     }catch(error){
+//         req.send("invalid request")
+//     }
+// })   
+
+
+//Fetching Assets.
+app.get('/fetchassets', async(req, res) => {
+    // Set response header for CSV download
+    const data = await assetRegister.find({})
+    res.setHeader('Content-Type', 'text/csv');
+    res.setHeader('Content-Disposition', 'attachment; filename=data.csv');
+  
+    // Create CSV writer
+    const csvWriter = createCsvWriter({
+      path: 'data.csv',
+      header: [
+        { id: 'Category', title: 'Category' },
+        { id: 'assetId', title: 'Id' },
+        { id: 'assetName', title: 'Name' },
+        { id: 'purchaseDate', title: 'pDate' },
+        { id: 'aQty', title: 'Quantity' },
+        { id: 'costPrice', title: 'CostPrice' },
+        { id: 'assetLife', title: 'Usefull_Life' },
+        { id: 'purchaseReason', title: 'PReason' },
+      ],
+    });
+  
+    // Write the data to CSV
+    csvWriter.writeRecords(data)
+      .then(() => {
+        console.log('CSV file created successfully');
+        res.sendFile('data.csv', { root: __dirname });
+      })
+      .catch(error => {
+        console.error('Error creating CSV file:', error);  
+        res.status(500).send('Error creating CSV file');
+      });
+  });
 
 
 
