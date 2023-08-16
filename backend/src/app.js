@@ -9,10 +9,11 @@ const {json} = require('express')
 const { set } = require('mongoose')
 const { validateHeaderValue } = require('http')
 const port = process.env.PORT || 3000
+const cors = require("cors")
 app.use(express.static("../public"))
 app.use(express.json())
 app.use(express.urlencoded({extended:false}))
-
+app.use(cors())
 
 // Login Screen
 app.get("/", (req,res)=>{
