@@ -178,12 +178,14 @@ app.post('/depreciation', async(req, res) => {
     
     const count = await assetRegister.countDocuments();            // to count the total number of rows in the collection.
     // console.log(count)    
-    
+    // const arr_dep_per = []
+    // const arr_dep_amt = []
     for(i=0;i<count;i++){
 
         const asset_life = data[i]["assetLife"]
         const dep_percent = 100/asset_life
         console.log("Depreciation percentage is :", dep_percent,"%")
+        // arr_dep_per.push(dep_percent)
 
         const assetCp = data[i]["costPrice"]
         console.log("Asset cost price is :", assetCp,"rs.")
@@ -198,9 +200,12 @@ app.post('/depreciation', async(req, res) => {
 
         const dep_Amount = (dep_Days*dep_percent*assetCp)/100
         console.log("Depreciation amount for this asset will be :", dep_Amount,"rs.")
+        // arr_dep_amt.push(dep_Amount)
 
         
     }
+    // console.log(arr_dep_amt)
+    // console.log(arr_dep_per)
     
 
     res.setHeader('Content-Type', 'text/csv');
