@@ -9,13 +9,14 @@ const app = express()
 const {json} = require('express')
 const { set } = require('mongoose')
 const { validateHeaderValue } = require('http')
-const port = process.env.PORT || 3000
+const port = process.env.PORT || 4000
 const cors = require("cors")
 const { count } = require('console')
 app.use(express.static("../public"))
 app.use(express.json())
 app.use(express.urlencoded({extended:false}))
 app.use(cors())
+
 
 // Login Screen
 app.get("/", (req,res)=>{
@@ -99,7 +100,7 @@ app.post("/asset-addition", async(req,res)=>{
 })
 
 
-// Asset Deletion
+// Asset Deletion or Updation
 app.post("/asset-deletion", async(req,res)=>{
     try{
         const delAsset = new assetDel({
@@ -123,6 +124,8 @@ app.post("/asset-deletion", async(req,res)=>{
         res.status(400).send(error)
     }
 })
+
+
 
 // // Fetching Asset Register
 // app.get("/fetchassets", async(req, res)=>{
@@ -171,41 +174,70 @@ app.get('/fetchassets', async(req, res) => {
 
 
 
+//------------------------------------------------------------------------------------------------------------------//
+//Depreciation formula                                                                                              //
+// var dep_per = 100 / req.body.assetUL                                // Depreciation percentage                   //
+//                                                                                                                  //
+// var dep_days = today - req.body.pDate                               //  No. of Days for Depreciation             //
+//                                                                                                                  //
+// var value = req.body.assetCp                                                                                     //
+//                                                                                                                  //
+// var dep_amt = (dep_days * dep_per * value) / 100                    //  Amount to be Depreciated of Asset        //
+//------------------------------------------------------------------------------------------------------------------//
+
+
 //Depreciation calculation.
 app.post('/depreciation', async(req, res) => {
     // Set response header for CSV download
     const data = await assetRegister.find({})
     
-    const count = await assetRegister.countDocuments();            // to count the total number of rows in the collection.
-    // console.log(count)    
-    // const arr_dep_per = []
-    // const arr_dep_amt = []
+    const count = await assetRegister.countDocuments();          // Counting total number of rows in the collection.
+    // console.log(count) 
+
+    
+    //Initialization of arrays.
+    var arr_dep_per = []
+    var arr_dep_amt = []
+
+    //loop for calculate dep_per and dep_amt for every tuple.
     for(i=0;i<count;i++){
 
         const asset_life = data[i]["assetLife"]
+
         const dep_percent = 100/asset_life
-        console.log("Depreciation percentage is :", dep_percent,"%")
-        // arr_dep_per.push(dep_percent)
+        // console.log("Depreciation percentage is :", dep_percent,"%")
+        arr_dep_per.push(dep_percent)
 
         const assetCp = data[i]["costPrice"]
-        console.log("Asset cost price is :", assetCp,"rs.")
+        // console.log("Asset cost price is :", assetCp,"rs.")
         
         const assetPd = new Date(data[i]["purchaseDate"])
-        // console.log(apd)
+        // console.log(assetPd)
+
         const tillDate = new Date(req.body.tilldate)
-        // console.log(td)
+        // console.log(tillDate)
+
         const dates_Diff = tillDate - assetPd
+
         const dep_Days = Math.floor(dates_Diff / (1000 * 60 * 60 * 24));
-        console.log("Number of days in which the asset is depreciated are :", dep_Days)
+        // console.log("Number of days in which the asset is depreciated are :", dep_Days)
 
         const dep_Amount = (dep_Days*dep_percent*assetCp)/100
-        console.log("Depreciation amount for this asset will be :", dep_Amount,"rs.")
-        // arr_dep_amt.push(dep_Amount)
+        // console.log("Depreciation amount for this asset will be :", dep_Amount,"rs.")
+        arr_dep_amt.push(dep_Amount)
 
         
     }
+
     // console.log(arr_dep_amt)
     // console.log(arr_dep_per)
+    
+
+    //loop for adding dep_per and dep_amt in the data.
+    for(i=0;i<count;i++){
+        data[i]["dep_percent"] = arr_dep_per[i]
+        data[i]["dep_Amount"] = arr_dep_amt[i]
+    }
     
 
     res.setHeader('Content-Type', 'text/csv');
@@ -240,19 +272,11 @@ app.post('/depreciation', async(req, res) => {
       });
   });
 
-// Port Listening 
+
+
+// Port Listening.
 app.listen(port, ()=>{
     console.log("Server is running at port no: "+port)
 })
 
 
-// Depreciation formula
-// var dep_per = 100 / req.body.assetUL                                 // Depreciation percentage
- 
-// var dep_days = today - req.body.pDate                          //  No. of Days for Depreciation
-
-
-// var value = req.body.assetCp 
-// var dep_amt = (dep_days * dep_per * value) / 100            //  Amount to be Depreciated of Asset
-
-// console.log(dep_amt)
